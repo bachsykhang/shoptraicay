@@ -2148,6 +2148,7 @@
     <Content Include="Assets\Images\AdminLTELogo.png" />
     <Content Include="Assets\Images\anhchitiethang.jpg" />
     <Content Include="Assets\Images\bapsu.jpg" />
+    <Content Include="Assets\Images\CacSPMoi\carot.png" />
     <Content Include="Assets\Images\cai-thia.jpg" />
     <Content Include="Assets\Images\caidun.jpg" />
     <Content Include="Assets\Images\cu\carot.png" />
@@ -2484,7 +2485,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\PrivatePages\Data\" />
-    <Folder Include="Assets\Images\CacSPMoi\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

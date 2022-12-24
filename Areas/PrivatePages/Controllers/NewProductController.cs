@@ -21,7 +21,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
             return View(x);
         }
         [HttpPost]
-        public ActionResult Index(SanPham x, HttpPostedFileBase hinhSP)
+        public ActionResult Index(SanPham x,int loaiSP, HttpPostedFileBase hinhSP)
         {
             try
             {
@@ -31,6 +31,8 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
                 x.maSP = string.Format("{0:yyMMddhhmm}", DateTime.Now);
                 x.ngayDang = DateTime.Now;
                 x.giamGia = 0;
+                x.dvt = "kg";
+                x.maLoai = loaiSP;
                 DangNhap tk = Session["tkDangNhap"] as DangNhap;
                 x.taiKhoan = tk.taiKhoan;
 

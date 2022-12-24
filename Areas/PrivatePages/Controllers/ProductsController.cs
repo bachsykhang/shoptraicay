@@ -14,7 +14,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
         public ActionResult Index()
         {
             ShoptraicayEntities shop = new ShoptraicayEntities();
-            List<SanPham> sp = shop.SanPham.ToList<SanPham>();
+            List<SanPham> sp = shop.SanPham.OrderByDescending(m => m.ngayDang).ToList<SanPham>();
             ViewData["DanhSachSP"] = sp;
             return View();
         }
@@ -24,7 +24,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
             SanPham x = shop.SanPham.Find(loaiCanXoa);
             shop.SanPham.Remove(x);
             shop.SaveChanges();
-            ViewData["DanhSachSP"] = shop.SanPham.OrderBy(m => m.tenSP).ToList<SanPham>();
+            ViewData["DanhSachSP"] = shop.SanPham.OrderByDescending(m => m.ngayDang).ToList<SanPham>();
             return View("Index");
         }
         public ActionResult Active(string loaiCanAt)
@@ -40,7 +40,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
                 x.daDuyet = true;
             }
             shop.SaveChanges();
-            ViewData["DanhSachSP"] = shop.SanPham.OrderBy(m => m.tenSP).ToList<SanPham>();
+            ViewData["DanhSachSP"] = shop.SanPham.OrderByDescending(m => m.ngayDang).ToList<SanPham>();
             return View("Index");
         }
         [HttpGet]
@@ -52,7 +52,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
         }
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult UpdateSP(SanPham x, HttpPostedFileBase hinhSP)
+        public ActionResult UpdateSP(SanPham x,int loaiSP,HttpPostedFileBase hinhSP)
         {
             ShoptraicayEntities db = new ShoptraicayEntities();
             SanPham y = db.SanPham.Find(x.maSP);
@@ -62,7 +62,7 @@ namespace shoptraicay.Areas.PrivatePages.Controllers
             y.noiDung = x.noiDung;
             y.ngayDang = x.ngayDang;
             y.daDuyet = x.daDuyet;
-            y.maLoai = x.maLoai;
+            y.maLoai = loaiSP;
             y.taiKhoan = x.taiKhoan;
             if (hinhSP != null)
             {
